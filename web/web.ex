@@ -15,7 +15,6 @@ defmodule ExAdmin.Web do
     quote do
       use Phoenix.Controller
 
-      import Ecto.Model
       import Ecto.Query, only: [from: 1, from: 2]
       import ExAdmin.Gettext
 

@@ -12,12 +12,13 @@ defmodule TestExAdmin.User do
     has_many :roles, through: [:uses_roles, :user]
   end
 
-  @required_fields ~w(email)
-  @optional_fields ~w(name active)
+  @required_fields ~w(email)a
+  @optional_fields ~w(name active)a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 defmodule TestExAdmin.Role do
@@ -31,12 +32,13 @@ defmodule TestExAdmin.Role do
     has_many :roles, through: [:uses_roles, :role]
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w()
+  @required_fields ~w(name)a
+  @optional_fields ~w()a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 
   def all do
@@ -55,12 +57,13 @@ defmodule TestExAdmin.UserRole do
     timestamps()
   end
 
-  @required_fields ~w(user_id role_id)
-  @optional_fields ~w()
+  @required_fields ~w(user_id role_id)a
+  @optional_fields ~w()a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -74,12 +77,13 @@ defmodule TestExAdmin.Product do
     belongs_to :user, TestExAdmin.User
   end
 
-  @required_fields ~w(title price)
-  @optional_fields ~w(user_id)
+  @required_fields ~w(title price)a
+  @optional_fields ~w(user_id)a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -95,12 +99,13 @@ defmodule TestExAdmin.Noid do
 
   end
 
-  @required_fields ~w(name description)
-  @optional_fields ~w(company user_id)
+  @required_fields ~w(name description)a
+  @optional_fields ~w(company user_id)a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -115,12 +120,13 @@ defmodule TestExAdmin.Noprimary do
     timestamps()
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w(index description)
+  @required_fields ~w(name)a
+  @optional_fields ~w(index description)a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -135,12 +141,13 @@ defmodule TestExAdmin.Simple do
     timestamps()
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w(description)
+  @required_fields ~w(name)a
+  @optional_fields ~w(description)a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 
 end
@@ -155,12 +162,13 @@ defmodule TestExAdmin.Restricted do
 
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w(description)
+  @required_fields ~w(name)a
+  @optional_fields ~w(description)a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -179,12 +187,13 @@ defmodule TestExAdmin.PhoneNumber do
     timestamps()
   end
 
-  @required_fields ~w(number label)
-  @optional_fields ~w()
+  @required_fields ~w(number label)a
+  @optional_fields ~w()a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 
   def labels, do: ["Primary Phone", "Secondary Phone", "Home Phone",
@@ -208,12 +217,13 @@ defmodule TestExAdmin.Contact do
     timestamps()
   end
 
-  @required_fields ~w(first_name last_name)
-  @optional_fields ~w()
+  @required_fields ~w(first_name last_name)a
+  @optional_fields ~w()a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -226,12 +236,13 @@ defmodule TestExAdmin.ContactPhoneNumber do
     belongs_to :phone_number, TestExAdmin.PhoneNumber
   end
 
-  @required_fields ~w(contact_id phone_number_id)
-  @optional_fields ~w()
+  @required_fields ~w(contact_id phone_number_id)a
+  @optional_fields ~w()a
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
 
@@ -246,7 +257,7 @@ defmodule TestExAdmin.UUIDSchema do
     timestamps()
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name)a
 
   def changeset(model, params \\ %{}) do
     model

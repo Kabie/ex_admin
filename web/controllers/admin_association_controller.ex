@@ -71,7 +71,7 @@ defmodule ExAdmin.AdminAssociationController do
 
   defp changeset(struct, assoc_name, positions) do
     struct
-    |> Ecto.Changeset.cast(%{assoc_name => positions}, [], [])
+    |> Ecto.Changeset.cast(%{assoc_name => positions}, [])
     |> Ecto.Changeset.cast_assoc(assoc_name)
   end
 
